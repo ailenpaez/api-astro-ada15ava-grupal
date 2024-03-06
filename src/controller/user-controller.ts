@@ -46,6 +46,39 @@ static createUser = async (req: Request, res: Response) => {
    }
  };
 
+ static updateUser = (req:Request, res: Response)=>{
+    
+  const responseValidator = validatePartialUser(req.body);
+
+  if (!responseValidator.success) {
+    return res.status(400).send(responseValidator.error);
+  }
+
+  const { id } = req.params;
+  const { name, email}  = req.body;
+
+  const objUser = { id, name, email};
+
+  const response = UserModel.updateUser(objUser);
+
+  if (!response.message) {
+    res.status(400).json({ error: "Error to update Chart!" });
+  }
+
+  return res.json(response);
+
+}
+
+ static deleteUser = (req: Request, res: Response) => {
+  const { id } = req.params;
+  const response = UserModel.deleteUser(id);
+  if (!response.message) {
+    res.status(400).json({ error: "Error to delete user." });
+  }
+
+  return res.json(response);
+};
+
 }
 
 export default UserController;

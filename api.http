@@ -58,5 +58,18 @@ Content-Type: application/json
 
 {
 "birthdate": "7-3-2000"
+}
 
+### Borrar una carta astral
+
+DELETE http://localhost:3434/api/charts/Matias Arno
+
+### Updatear un usuario
+
+PATCH http://localhost:3434/api/users/0ac7be2d-cddb-4558-a687-4d21b7be7e85
+
+Content-Type: application/json
+
+{
+    "email": "holaaa@gmail.com"
 }
